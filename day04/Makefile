@@ -9,7 +9,11 @@ FLAGS    := -Wall -Werror -Wextra
 SRCS1        :=      day04p1.cpp \
 			utils/populatestruct.cpp \
 
+SRCS2        :=      day04p2.cpp \
+			utils/populatestruct.cpp \
+
 OBJS1        := $(SRCS1:.c=.o)
+OBJS2        := $(SRCS2:.c=.o)
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
@@ -32,14 +36,20 @@ ${NAME1}:	${OBJS1}
 			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME1) ${CLR_RMV}..."
 			${CC} ${FLAGS} -o ${NAME1} ${OBJS1}
 			@echo "$(GREEN)$(NAME1) created[0m ✔️"
+${NAME2}:	${OBJS2}
+			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME2) ${CLR_RMV}..."
+			${CC} ${FLAGS} -o ${NAME2} ${OBJS2}
+			@echo "$(GREEN)$(NAME2) created[0m ✔️"
 
 clean:
 			@ ${RM} *.o */*.o */*/*.o
 			@ echo "$(RED)Deleting $(CYAN)$(NAME1) $(CLR_RMV)objs ✔️"
+			@ echo "$(RED)Deleting $(CYAN)$(NAME2) $(CLR_RMV)objs ✔️"
 
 fclean:		clean
-			@ ${RM} ${NAME1}
+			@ ${RM} ${NAME1} ${NAME2}
 			@ echo "$(RED)Deleting $(CYAN)$(NAME1) $(CLR_RMV)binary ✔️"
+			@ echo "$(RED)Deleting $(CYAN)$(NAME2) $(CLR_RMV)binary ✔️"
 
 re:			fclean all
 
